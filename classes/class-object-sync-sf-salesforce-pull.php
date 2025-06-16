@@ -636,6 +636,9 @@ class Object_Sync_Sf_Salesforce_Pull {
 	 * @param array    $response the previous response.
 	 */
 	private function get_next_record_batch( $last_sync, $salesforce_mapping, $map_sync_triggers, $type, $version_path, $query_options, $response ) {
+
+		$sfapi = $this->salesforce['sfapi'];
+
 		// Handle next batch of records if it exists.
 		$next_records_url = isset( $response['nextRecordsUrl'] ) ? str_replace( $version_path, '', $response['nextRecordsUrl'] ) : false;
 		while ( $next_records_url ) {
